@@ -19,23 +19,20 @@ A lightweight and flexible utility to **migrate vector embeddings and metadata**
 
 ## 📁 Supported Sources & Destinations
 
-| Source DB | Destination DB | Format        |
-|-----------|----------------|---------------|
-| Pinecone  | ChromaDB       | Direct / JSON |
-| ChromaDB  | Pinecone       | Direct / JSON |
-| JSON File | Any DB         | Intermediate  |
-| Any DB    | JSON File      | Export        |
+| Source DB | Destination DB |
+|-----------|----------------|
+| Pinecone  | ChromaDB       | 
+| ChromaDB  | Pinecone       | 
+| Pinecone  | Qdrant         | 
+| Qdrant    | Pinecone       | 
 
-> ✅ Add more adapters as needed using the unified interface.
-
----
 
 ## 🧰 Requirements
 
-- Python 3.8+
+- Python 3.10+
 - `pinecone-client`
 - `chromadb`
-- `numpy`, `tqdm`, `pandas` (optional)
+- `qdrant-client`
 
 Install dependencies:
 
