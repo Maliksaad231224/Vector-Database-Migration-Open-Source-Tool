@@ -10,7 +10,7 @@ app = FastAPI()
 logger = logging.getLogger("migration")
 logging.basicConfig(level=logging.INFO)
 
-class MigrationRequest(BaseModel):
+class ChromaToQdrantMigrationRequest(BaseModel):
     chroma_api_key: str
     chroma_tenant: str
     chroma_database: str
@@ -21,7 +21,7 @@ class MigrationRequest(BaseModel):
     qdrant_collection: str
 
 @app.post("/migrate/chroma-to-qdrant")
-def migrate_chroma_to_qdrant(req: MigrationRequest):
+def migrate_chroma_to_qdrant(req: ChromaToQdrantMigrationRequest):
     try:
         # Initialize Chroma client
         chroma_client = ChromaClient(

@@ -9,7 +9,7 @@ app = FastAPI()
 logger = logging.getLogger("migration")
 logging.basicConfig(level=logging.INFO)
 
-class MigrationRequest(BaseModel):
+class QdrantToChromaMigrationRequest(BaseModel):
     qdrant_url: str
     qdrant_api_key: str
     qdrant_collection: str
@@ -18,7 +18,7 @@ class MigrationRequest(BaseModel):
     chroma_collection: str
 
 @app.post("/migrate/qdrant-to-chroma")
-def migrate_qdrant_to_chroma(req: MigrationRequest):
+def migrate_qdrant_to_chroma(req: QdrantToChromaMigrationRequest):
     try:
         # Connect to Qdrant
         qdrant_client = QdrantClient(
