@@ -3,8 +3,11 @@ from pydantic import BaseModel
 from qdrant_client import QdrantClient
 from chromadb import Client as ChromaClient
 from chromadb.config import Settings
+import logging
 
 app = FastAPI()
+logger = logging.getLogger("migration")
+logging.basicConfig(level=logging.INFO)
 
 class MigrationRequest(BaseModel):
     qdrant_url: str
@@ -71,4 +74,5 @@ def migrate_qdrant_to_chroma(req: MigrationRequest):
         return {"status": "success", "message": f"Migrated {len(ids)} vectors from Qdrant to Chroma."}
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Migration failed.")
+        return {"status": "error", "message": str(e)}

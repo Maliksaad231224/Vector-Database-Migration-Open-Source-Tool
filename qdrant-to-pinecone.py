@@ -83,5 +83,5 @@ async def qdrant_to_pinecone(req: QdrantToPineconeMigrateRequest):
         }
 
     except Exception as e:
-        logger.error(f"Migration failed: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Migration failed.")
+        return {"status": "error", "message": str(e)}

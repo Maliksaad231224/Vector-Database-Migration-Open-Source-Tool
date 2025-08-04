@@ -67,4 +67,4 @@ def migrate_chroma_to_qdrant(req: MigrationRequest):
 
     except Exception as e:
         logger.exception("Migration failed.")
-        raise HTTPException(status_code=500, detail=str(e))
+        return {"status": "error", "message": str(e)}
